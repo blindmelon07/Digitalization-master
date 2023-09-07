@@ -26,6 +26,9 @@ class MemberResource extends Resource
                 Forms\Components\TextInput::make('id')
                     ->required()
                     ->maxLength(99),
+                Forms\Components\TextInput::make('members_id')
+                    ->required()
+                    ->maxLength(255),
                 Forms\Components\TextInput::make('FullName')
                     ->maxLength(30),
                 Forms\Components\TextInput::make('Address')
@@ -53,6 +56,8 @@ class MemberResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('id')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('members_id')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('FullName')
                     ->searchable(),

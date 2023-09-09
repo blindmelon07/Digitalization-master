@@ -19,9 +19,9 @@ class EditProfile extends BaseEditProfile
     {
         return $form
             ->schema([
-                TextInput::make('username')
+                /* TextInput::make('username')
                     ->required()
-                    ->maxLength(255),
+                    ->maxLength(255), */
                 $this->getNameFormComponent(),
                 $this->getEmailFormComponent(),
                 $this->getPasswordFormComponent(),

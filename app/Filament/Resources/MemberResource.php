@@ -26,7 +26,8 @@ class MemberResource extends Resource
                 
                 Forms\Components\TextInput::make('members_id')
                     ->required()
-                    ->maxLength(255),
+                    ->maxLength(255)
+                    ->unique(ignoreRecord: true),
                 Forms\Components\TextInput::make('full_name')
                     ->maxLength(30),
                 Forms\Components\TextInput::make('Address')
@@ -38,12 +39,16 @@ class MemberResource extends Resource
                     ->maxLength(6),
                 Forms\Components\TextInput::make('Geograph_group')
                     ->maxLength(30),
-                Forms\Components\TextInput::make('Date_of_birth')
-                    ->maxLength(13),
+                Forms\Components\DatePicker::make('Date_of_birth'),
                 Forms\Components\TextInput::make('Age')
                     ->maxLength(3),
-                Forms\Components\TextInput::make('civil_status')
-                    ->maxLength(12),
+                Forms\Components\Select::make('civil_status')
+                    ->options([
+                        'Single' => 'Single',
+                        'Married' => 'Married',
+                        'Divorce' => 'Divorce',
+                        'Widowed' => 'Widowed',
+                    ]),
                 Forms\Components\TextInput::make('bussi_emp_name')
                     ->maxLength(22),
             ]);
@@ -83,6 +88,7 @@ class MemberResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make()
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

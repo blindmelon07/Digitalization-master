@@ -23,13 +23,11 @@ class MemberResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('id')
-                    ->required()
-                    ->maxLength(99),
+                
                 Forms\Components\TextInput::make('members_id')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('FullName')
+                Forms\Components\TextInput::make('full_name')
                     ->maxLength(30),
                 Forms\Components\TextInput::make('Address')
                     ->maxLength(60),
@@ -44,9 +42,9 @@ class MemberResource extends Resource
                     ->maxLength(13),
                 Forms\Components\TextInput::make('Age')
                     ->maxLength(3),
-                Forms\Components\TextInput::make('Civil_Status')
+                Forms\Components\TextInput::make('civil_status')
                     ->maxLength(12),
-                Forms\Components\TextInput::make('Bussi_Emp_Name')
+                Forms\Components\TextInput::make('bussi_emp_name')
                     ->maxLength(22),
             ]);
     }
@@ -58,9 +56,11 @@ class MemberResource extends Resource
                 Tables\Columns\TextColumn::make('id')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('members_id')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('FullName')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('full_name')
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('Address')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('Cellphone_num')
@@ -73,9 +73,9 @@ class MemberResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('Age')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('Civil_Status')
+                Tables\Columns\TextColumn::make('civil_status')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('Bussi_Emp_Name')
+                Tables\Columns\TextColumn::make('bussi_emp_name')
                     ->searchable(),
             ])
             ->filters([

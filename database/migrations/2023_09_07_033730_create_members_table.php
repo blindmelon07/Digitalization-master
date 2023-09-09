@@ -13,16 +13,16 @@ return new class extends Migration
     {
         Schema::create('members', function (Blueprint $table) {
             $table->id();
-            $table->strings('members_id');
-            $table->strings('Fullname');
-            $table->strings('Address');
-            $table->strings('Cellphone_num');
-            $table->strings('Gender');
-            $table->strings('Geograph_group');
-            $table->strings('Date_of_birth');
-            $table->strings('Age');
-            $table->strings('Civil_status');
-            $table->strings('Bussi_Emp_name');
+            $table->string('members_id');
+            $table->string('full_name');
+            $table->string('Address');
+            $table->string('Cellphone_num');
+            $table->string('Gender');
+            $table->string('Geograph_group');
+            $table->string('Date_of_birth');
+            $table->string('Age');
+            $table->string('civil_status');
+            $table->string('bussi_emp_name');
             $table->timestamps();
         });
     }

@@ -10,8 +10,16 @@ class Member extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        ''
+        'members_id',
+        'full_name',
+        'Address',
+        'Cellphone_num',
+        'Gender',
+        'Geograph_group',
+        'Date_of_birth',
+        'Age',
+        'civil_status',
+        'bussi_emp_name',
     ];
 
 }

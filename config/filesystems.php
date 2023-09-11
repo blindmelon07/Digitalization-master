@@ -35,10 +35,15 @@ return [
             'root' => storage_path('app'),
             'throw' => false,
         ],
+        'backup' => [
+            'driver' => 'local',
+            'root' => storage_path('app/backups'),
+            'throw' => false,
+        ],
 
         'public' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
+            'root' => storage_path('app/backups'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
             'throw' => false,

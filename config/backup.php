@@ -8,7 +8,7 @@ return [
          * The name of this application. You can use this name to monitor
          * the backups.
          */
-        'name' => env('APP_NAME', 'laravel-backup'),
+        'name' => "",
 
         'source' => [
 
@@ -117,6 +117,7 @@ return [
              * The disk names on which the backups will be stored.
              */
             'disks' => [
+                'google',
                 'backup',
             ],
         ],
@@ -177,14 +178,14 @@ return [
          */
         'notifiable' => \Spatie\Backup\Notifications\Notifiable::class,
 
-        'mail' => [
+       /*  'mail' => [
             'to' => 'your@example.com',
 
             'from' => [
                 'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
                 'name' => env('MAIL_FROM_NAME', 'Example'),
             ],
-        ],
+        ], */
 
         'slack' => [
             'webhook_url' => '',
@@ -223,7 +224,7 @@ return [
     'monitor_backups' => [
         [
             'name' => env('APP_NAME', 'laravel-backup'),
-            'disks' => ['local'],
+            'disks' => ['google'],
             'health_checks' => [
                 \Spatie\Backup\Tasks\Monitor\HealthChecks\MaximumAgeInDays::class => 1,
                 \Spatie\Backup\Tasks\Monitor\HealthChecks\MaximumStorageInMegabytes::class => 5000,

@@ -170,7 +170,7 @@ return [
         App\Providers\Filament\AdminPanelProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\GoogleDriveServiceProvider::class,
-       
+
     ])->toArray(),
 
     /*
@@ -190,5 +190,3 @@ return [
     ])->toArray(),
 
 ];
-//import mo brod 
-//php artisan vendor:publish --tag=filament-import-config

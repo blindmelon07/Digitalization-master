@@ -31,9 +31,21 @@ class ListMembers extends ListRecords
     }  
     public $file = '';
     public function save(){
+        try {
             if($this->file != ''){
                 Excel::import(new ImportMember, $this->file);
             }
+        } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
+             //$failures = $e->failures();
+             dd($failures = $e->failures());
+            //  foreach ($failures as $failure) {
+            //      dd($failure->row()); // row that went wrong
+            //      dd($failure->attribute()); // either heading key (if using heading row concern) or column index
+            //      dd($failure->errors()); // Actual error messages from Laravel validator
+            //      dd($failure->values()); // The values of the row that has failed.
+            //  }
+        }
+            
         /*     Member::create([
                   //ibutang mo didi brod an sa database names  
                   'members_id' => '0545454',

@@ -4,9 +4,16 @@ namespace App\Imports;
 
 use App\Models\Member;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithUpserts;
+use Maatwebsite\Excel\Concerns\WithValidation;
 
-class ImportMember implements ToModel
+class ImportMember implements ToModel, WithValidation, WithUpserts, WithHeadingRow
 {
+    public function uniqueBy()
+    {
+        return 'members_id';
+    }
     /**
     * @param array $row
     *
@@ -14,20 +21,29 @@ class ImportMember implements ToModel
     */
     public function model(array $row)
     {
-        return new Member([
-            //palitan mo brod sing $row[] and so on 
-          //example
-            'id' => $row[0],
-            'members_id' => $row[1],
-            'full_name' => $row[2],
-            'Address' => $row[3],
-            'Cellphone_num' => $row[4],
-            'Gender' => $row[5],
-            'Geograph_group' => $row[6],
-            'Date_of_birth' => $row[7],
-            'Age' => $row[8],
-            'civil_status' => $row[9],
-            'bussi_emp_name' => $row[10],
-        ]);
+        $data = [
+            'members_id' => (string)($row['members_id'] ?? ''),
+            'full_name' => (string)($row['full_name'] ?? ''),
+            'address' => (string)($row['address'] ?? ''),
+            'cellphone_num' => (string)($row['cellphone_num'] ?? ''),
+            'gender' => (string)($row['gender'] ?? ''),
+            'geograph_group' => (string)($row['geograph_group'] ?? ''),
+            'date_of_birth' => (string)($row['date_of_birth'] ?? ''),
+            'age' => (string)($row['age'] ?? ''),
+            'civil_status' => (string)($row['civil_status'] ?? ''),
+            'bussi_emp_name' => (string)($row['bussi_emp_name'] ?? ''),
+        ];
+        return new Member($data);
+    }
+
+    public function rules(): array
+    {
+        return [
+            'members_id' => 'required',
+
+             // Above is alias for as it always validates in batches
+             '*.members_id' => 'required',
+             
+        ];
     }
 }

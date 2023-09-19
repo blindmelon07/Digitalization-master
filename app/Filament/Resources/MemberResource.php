@@ -23,7 +23,7 @@ class MemberResource extends Resource
     {
         return $form
             ->schema([
-                
+
                 Forms\Components\TextInput::make('members_id')
                     ->required()
                     ->numeric()
@@ -60,7 +60,7 @@ class MemberResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('id')
-                    ->searchable(), 
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('members_id')
                     ->searchable()
                     ->sortable(),
@@ -88,6 +88,7 @@ class MemberResource extends Resource
                 //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make()
             ])
@@ -96,7 +97,7 @@ class MemberResource extends Resource
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ])
-         
+
             ->emptyStateActions([
                 Tables\Actions\CreateAction::make(),
             ]);
@@ -115,6 +116,7 @@ class MemberResource extends Resource
             'index' => Pages\ListMembers::route('/'),
             'create' => Pages\CreateMember::route('/create'),
             'edit' => Pages\EditMember::route('/{record}/edit'),
+            'view' => Pages\ViewProfile::route('/{record}'),
         ];
     }
 }

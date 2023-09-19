@@ -23,11 +23,12 @@ class MemberResource extends Resource
     {
         return $form
             ->schema([
-                
+
                 Forms\Components\TextInput::make('members_id')
                     ->required()
+                    ->numeric()
                     ->maxLength(255)
-                    ->unique(ignoreRecord: true),
+                    ->unique(),
                 Forms\Components\TextInput::make('full_name')
                     ->maxLength(30),
                 Forms\Components\TextInput::make('Address')
@@ -50,7 +51,7 @@ class MemberResource extends Resource
                         'Widowed' => 'Widowed',
                     ]),
                 Forms\Components\TextInput::make('bussi_emp_name')
-                    ->maxLength(22),
+                    ->maxLength(255),
             ]);
     }
 
@@ -87,6 +88,7 @@ class MemberResource extends Resource
                 //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make()
             ])
@@ -95,6 +97,7 @@ class MemberResource extends Resource
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ])
+
             ->emptyStateActions([
                 Tables\Actions\CreateAction::make(),
             ]);
@@ -113,6 +116,7 @@ class MemberResource extends Resource
             'index' => Pages\ListMembers::route('/'),
             'create' => Pages\CreateMember::route('/create'),
             'edit' => Pages\EditMember::route('/{record}/edit'),
+            'view' => Pages\ViewProfile::route('/{record}'),
         ];
     }
 }

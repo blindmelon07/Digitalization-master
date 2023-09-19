@@ -23,3 +23,4 @@ class Member extends Model
     ];
 
 }
+//wara pa un brod mahimo pa kita sa blade file :)
